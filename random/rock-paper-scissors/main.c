@@ -1,6 +1,7 @@
 #include <stdio.h>
 #define IN_LIMIT 1000
 
+int valid(char[] in);
 void getWord(char[] s);
 int strcmp(char[] a, char[] b);
 int strlen(char[] a);
@@ -12,11 +13,20 @@ int main() {
     printf("As a note, all inputs are limited to %d characters.", IN_LIMIT);
     char input[IN_LIMIT];
     while(getWord(s)) {
-        if(input)
+        if(valid(input)) {
+            
+        }
     
     }
 
     return 0;
+}
+
+//Check for valid input
+int valid(char[] in) {
+    return (strcmp(input, "rock") != 0) || 
+        (strcmp(input, "paper") != 0) ||
+        (strcmp(input, "scissors"));
 }
 
 //Within this function, we will be assuming the 
@@ -25,22 +35,26 @@ int main() {
 //Breaks on newline or whitespace
 void getWord(char[] s) {
     int c;
-    for(int i = 0; (c = getchar()) != EOF && c != '\n' && c != ' '; ++i) {
+    int i;
+    for(i = 0; (c = getchar()) != EOF && c != '\n' && c != ' '; ++i) {
         s[i] = c;
     }
+    s[i] = '\0';
 }
 
 int strcmp(char[] a, char[] b) {
     int len;
-    if((len = strlen(a)) != strlen(b)) {
-        return 0;
-    }
     for(int i = 0; i < len; ++i) {
         if(a[i] < b[i]) {
             return -1;
         } else if(a[i] > b[i]) {
             return 1;
         }
+    }
+    if((len = strlen(a)) != strlen(b)) {
+        return 2; //2 for code, as in lengths of strings are not the same
+    } else {
+        return 0;
     }
     return 0;
 }
