@@ -9,13 +9,16 @@ int valid(char input[]);
 int getWord(char s[]);
 int toSelection(char s[]);
 
+void printTie();
+void printWin();
+void printLose();
+
 int strcmp(char a[], char b[]);
 int strlen(char a[]);
 
+enum Selection { ROCK, PAPER, SCISSORS };
 
 int main() {
-
-    enum Selection { ROCK, PAPER, SCISSORS };
 
     //Preparations
     setupRNG();
@@ -23,27 +26,27 @@ int main() {
     printf("Ready to play rock-paper-scissors? Type in either \"rock\", \"paper\" or \"scissors\" and enter to select.\n");
     printf("As a note, all inputs are limited to %d characters.\n", IN_LIMIT);
     char input[IN_LIMIT];
-    while(getWord(input)) {
-        if(!valid(input)) {
+    while (getWord(input)) {
+        if (!valid(input)) {
             printf("Sorry, but the input \"%s\" is invalid. Please review any valid input types previously specified, and try again.\n", input);
             continue;            
         }
-        
+
+        //Grab selection
+        int choice = toSelection(input);
+
         //Produce an answer internally
         int roll = rand() % 3;
-/*        switch(roll) {
 
-            case ROCK:
-                if()
-
-            case PAPER:
-        
-            case SCISSORS:
-        
-        
+        if (roll == choice) {
+            printTie();
+        } else {
+            break;
         }
-*/    
+    
     }
+
+    
 
     return 0;
 }
@@ -66,23 +69,45 @@ int valid(char input[]) {
 int getWord(char s[]) {
     int c;
     int i;
-    for(i = 0; (c = getchar()) != EOF && c != '\n' && c != ' '; ++i) {
+    for (i = 0; (c = getchar()) != EOF && c != '\n' && c != ' '; ++i) {
         s[i] = c;
     }
     s[i] = '\0';
     return 1;
 }
 
+int toSelection(char s[]) {
+    if (strcmp(s, "rock") == 0) {
+        return ROCK;
+    } else if (strcmp(s, "paper") == 0) {
+        return PAPER;
+    } else if (strcmp(s, "scissors") == 0) {
+        return SCISSORS;
+    }
+}
+
+void printTie() {
+    printf("A tie! Onto the next round, try rolling again!\n");
+}
+
+void printWin() {
+    printf("A win! gg\n");
+}
+
+void printLose() {
+    printf("A loss... F\n");
+}
+
 int strcmp(char a[], char b[]) {
     int len;
-    for(int i = 0; i < len; ++i) {
-        if(a[i] < b[i]) {
+    for (int i = 0; i < len; ++i) {
+        if (a[i] < b[i]) {
             return -1;
-        } else if(a[i] > b[i]) {
+        } else if (a[i] > b[i]) {
             return 1;
         }
     }
-    if((len = strlen(a)) != strlen(b)) {
+    if ((len = strlen(a)) != strlen(b)) {
         return 2; //2 for code, as in lengths of strings are not the same
     } else {
         return 0;
