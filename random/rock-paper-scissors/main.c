@@ -13,9 +13,13 @@ int main() {
     printf("As a note, all inputs are limited to %d characters.", IN_LIMIT);
     char input[IN_LIMIT];
     while(getWord(s)) {
-        if(valid(input)) {
-            
+        if(!valid(input)) {
+            printf("Sorry, but the input \"%s\" is invalid. Please review any valid input types previously specified, and try again.", input);
+            continue;            
         }
+        
+        //Produce an answer internally
+
     
     }
 
@@ -24,9 +28,9 @@ int main() {
 
 //Check for valid input
 int valid(char[] in) {
-    return (strcmp(input, "rock") != 0) || 
-        (strcmp(input, "paper") != 0) ||
-        (strcmp(input, "scissors"));
+    return (strcmp(input, "rock") == 0) || 
+        (strcmp(input, "paper") == 0) ||
+        (strcmp(input, "scissors") == 0);
 }
 
 //Within this function, we will be assuming the 
