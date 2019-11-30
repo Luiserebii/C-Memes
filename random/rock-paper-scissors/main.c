@@ -5,12 +5,12 @@
 #define IN_LIMIT 1000
 
 void setupRNG();
-int valid(char[] in);
-void getWord(char[] s);
-int toSelection
+int valid(char input[]);
+int getWord(char s[]);
+int toSelection(char s[]);
 
-int strcmp(char[] a, char[] b);
-int strlen(char[] a);
+int strcmp(char a[], char b[]);
+int strlen(char a[]);
 
 
 int main() {
@@ -20,12 +20,12 @@ int main() {
     //Preparations
     setupRNG();
 
-    printf("Ready to play rock-paper-scissors? Type in either \"rock\", \"paper\" or \"scissors\" and enter to select.");
-    printf("As a note, all inputs are limited to %d characters.", IN_LIMIT);
+    printf("Ready to play rock-paper-scissors? Type in either \"rock\", \"paper\" or \"scissors\" and enter to select.\n");
+    printf("As a note, all inputs are limited to %d characters.\n", IN_LIMIT);
     char input[IN_LIMIT];
-    while(getWord(s)) {
+    while(getWord(input)) {
         if(!valid(input)) {
-            printf("Sorry, but the input \"%s\" is invalid. Please review any valid input types previously specified, and try again.", input);
+            printf("Sorry, but the input \"%s\" is invalid. Please review any valid input types previously specified, and try again.\n", input);
             continue;            
         }
         
@@ -53,7 +53,7 @@ void setupRNG() {
 }
 
 //Check for valid input
-int valid(char[] in) {
+int valid(char input[]) {
     return (strcmp(input, "rock") == 0) || 
         (strcmp(input, "paper") == 0) ||
         (strcmp(input, "scissors") == 0);
@@ -63,16 +63,17 @@ int valid(char[] in) {
 //char[] passed is large enough
 //
 //Breaks on newline or whitespace
-void getWord(char[] s) {
+int getWord(char s[]) {
     int c;
     int i;
     for(i = 0; (c = getchar()) != EOF && c != '\n' && c != ' '; ++i) {
         s[i] = c;
     }
     s[i] = '\0';
+    return 1;
 }
 
-int strcmp(char[] a, char[] b) {
+int strcmp(char a[], char b[]) {
     int len;
     for(int i = 0; i < len; ++i) {
         if(a[i] < b[i]) {
@@ -89,7 +90,7 @@ int strcmp(char[] a, char[] b) {
     return 0;
 }
 
-int strlen(char[] a) {
+int strlen(char a[]) {
     int len;
     for(len = 0; a[len] != '\0'; ++len)
         ;
