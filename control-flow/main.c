@@ -6,8 +6,8 @@
 
 void setupRNG();
 int validate(char input[]);
-int atoi(char s[]);
-int getline(char s[]);
+int atoint(char s[]);
+int getlinestr(char s[]);
 
 /** 
  * Print random numbers until one is rolled higher than one input
@@ -16,20 +16,24 @@ int getline(char s[]);
 int main() {
     
     char input[IN_LIMIT];
-    for(; getline(input);) {
+    for(; getlinestr(input);) {
         if(!validate(input)) {
-            printf("Input is not a number");
+            printf("Input is not a number\n");
         } else {
             //In the clear, so let's break from this loop
             break;
         }
     }
     //Convert valid input to int
-    int res = atoi(input);
+    int res = atoint(input);
     int n;
     for(;;) {
         n = rand();
-        n < res ? printf("Random number: %d", n) : break;
+        if(n < res) {
+            printf("Random number: %d", n);
+        } else {
+            break;
+        }
     }    
 
 }
@@ -44,9 +48,10 @@ int validate(char input[]) {
             return 0;
         }
     }
+    return 1;
 }
 
-int atoi(char s[]) {
+int atoint(char s[]) {
     int n;
     for(int i = 0; s[i] >= '0' && s[i] <= '9' && s[i] != '\0'; ++i) {
         n = n * 10 + (s[i] - 0);
@@ -54,7 +59,7 @@ int atoi(char s[]) {
 }
 
 //Returns length
-int getline(char s[]) {
+int getlinestr(char s[]) {
     int c;
     int i;
     for(i = 0; (c = getchar()) != EOF && c != '\n'; ++i) {
