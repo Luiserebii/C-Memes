@@ -1,13 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 #define IN_LIMIT 1000
 
+void setupRNG();
 int valid(char[] in);
 void getWord(char[] s);
+int toSelection
+
 int strcmp(char[] a, char[] b);
 int strlen(char[] a);
 
 
 int main() {
+
+    enum Selection { ROCK, PAPER, SCISSORS };
+
+    //Preparations
+    setupRNG();
 
     printf("Ready to play rock-paper-scissors? Type in either \"rock\", \"paper\" or \"scissors\" and enter to select.");
     printf("As a note, all inputs are limited to %d characters.", IN_LIMIT);
@@ -19,11 +30,26 @@ int main() {
         }
         
         //Produce an answer internally
+        int roll = rand() % 3;
+/*        switch(roll) {
 
-    
+            case ROCK:
+                if()
+
+            case PAPER:
+        
+            case SCISSORS:
+        
+        
+        }
+*/    
     }
 
     return 0;
+}
+
+void setupRNG() {
+    srand(time(NULL));
 }
 
 //Check for valid input
