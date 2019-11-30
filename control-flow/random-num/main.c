@@ -10,7 +10,7 @@ int atoint(char s[]);
 int getlinestr(char s[]);
 
 /** 
- * Print random numbers until one is rolled higher than one input
+ * Print random numbers until one is rolled lower than input
  */
 
 int main() {
@@ -29,8 +29,8 @@ int main() {
     int n;
     for(;;) {
         n = rand();
-        if(n < res) {
-            printf("Random number: %d", n);
+        if(n > res) {
+            printf("Random number: %d\n", n);
         } else {
             break;
         }
