@@ -26,6 +26,7 @@ int main() {
     printf("Ready to play rock-paper-scissors? Type in either \"rock\", \"paper\" or \"scissors\" and enter to select.\n");
     printf("As a note, all inputs are limited to %d characters.\n", IN_LIMIT);
     char input[IN_LIMIT];
+    int choice, roll;
     while (getWord(input)) {
         if (!valid(input)) {
             printf("Sorry, but the input \"%s\" is invalid. Please review any valid input types previously specified, and try again.\n", input);
@@ -33,20 +34,52 @@ int main() {
         }
 
         //Grab selection
-        int choice = toSelection(input);
+        choice = toSelection(input);
 
         //Produce an answer internally
-        int roll = rand() % 3;
+        roll = rand() % 3;
 
         if (roll == choice) {
             printTie();
         } else {
             break;
         }
-    
     }
 
+    switch (choice) {
+        case ROCK:
+            switch (roll) {
+                case PAPER:
+                    printLose();
+                    break;
+                case SCISSORS:
+                    printWin();
+                    break;
+            }
+            break;
     
+        case PAPER:
+            switch (roll) {
+                case ROCK:
+                    printWin();
+                    break;
+                case SCISSORS:
+                    printLose();
+                    break;
+            }
+            break;
+
+        case SCISSORS:
+            switch (roll) {
+                case ROCK:
+                    printLose();
+                    break;
+                case PAPER:
+                    printWin();
+                    break;
+            }
+            break;
+    }
 
     return 0;
 }
