@@ -1,4 +1,4 @@
 all:
-	cc main.c ../lib/*.c -lm -o simple
+	cc main.c ../lib/*.c -lm -o diff
 run: all
-	./simple
+	./diff

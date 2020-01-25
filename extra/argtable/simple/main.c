@@ -1,54 +1,48 @@
 #include "../lib/argtable3.h"
 
-/* global arg_xxx structs */
-struct arg_lit *verb, *help, *version;
-struct arg_int *level;
-struct arg_file *o, *file;
-struct arg_end *end;
+#include <stdio.h>
+#include <string.h>
 
-int main(int argc, char *argv[])
-{
-    /* the global arg_xxx structs are initialised within the argtable */
-    void *argtable[] = {
-        help    = arg_litn(NULL, "help", 0, 1, "display this help and exit"),
-        version = arg_litn(NULL, "version", 0, 1, "display version info and exit"),
-        level   = arg_intn(NULL, "level", "<n>", 0, 1, "foo value"),
-        verb    = arg_litn("v", "verbose", 0, 1, "verbose output"),
-        o       = arg_filen("o", NULL, "myfile", 0, 1, "output file"),
-        file    = arg_filen(NULL, NULL, "<file>", 1, 100, "input files"),
-        end     = arg_end(20),
-    };
-    
-    int exitcode = 0;
-    char progname[] = "util.exe";
-    
-    int nerrors;
-    nerrors = arg_parse(argc,argv,argtable);
+#define MAXREAD 1000
 
-    /* special case: '--help' takes precedence over error reporting */
-    if (help->count > 0)
-    {
-        printf("Usage: %s", progname);
-        arg_print_syntax(stdout, argtable, "\n");
-        printf("Demonstrate command-line parsing in argtable3.\n\n");
-        arg_print_glossary(stdout, argtable, "  %-25s %s\n");
-        exitcode = 0;
-        goto exit;
+void diff(char* fn1, char* fn2);
+
+int main(int argc, char** argv) {
+
+    //Argument logic
+    if(--argc != 2) {
+        fprintf(stderr, "Invalid number of arguments passed, expected 2, received %d.\n", argc);
+        return 1;
     }
 
-    /* If the parser returned any errors then display them and exit */
-    if (nerrors > 0)
-    {
-        /* Display the error details contained in the arg_end struct.*/
-        arg_print_errors(stdout, end, progname);
-        printf("Try '%s --help' for more information.\n", progname);
-        exitcode = 1;
-        goto exit;
-    }
+    diff(argv[1], argv[2]);
 
-exit:
-    /* deallocate each non-null entry in argtable[] */
-    arg_freetable(argtable, sizeof(argtable) / sizeof(argtable[0]));
-    return exitcode;
+    return 0;
 }
 
+void diff(char* fn1, char* fn2) {
+    //Open files
+    FILE* file1 = fopen(fn1, "r");
+    FILE* file2 = fopen(fn2, "r");
+
+    //Compare each line
+    int found = 0;
+    char line1[MAXREAD];
+    char line2[MAXREAD];
+    while(fgets(line1, MAXREAD, file1) && fgets(line2, MAXREAD, file2)) {
+        if(strcmp(line1, line2) != 0) {
+            printf("First line in which files \"%s\" and \"%s\" differ found:\n", fn1, fn2);
+            printf("\n=-=-=\n%s\n=-=-=\n%s", fn1, line1);
+            printf("\n=-=-=\n%s\n=-=-=\n%s", fn2, line2);
+            found = 1;
+        }
+    }
+    //Print equal if equal
+    if(!found) {
+        printf("Files \"%s\" and \"%s\" are equal, no differences found.\n", fn1, fn2);
+    }
+
+    //Release resources
+    fclose(file1);
+    fclose(file2);
+}
