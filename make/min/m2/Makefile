@@ -1,8 +1,13 @@
 CFLAGS=-g3 -Wall -Wextra
-LDFLAGS=-o a.out
+LDFLAGS=
 
-all:
-	main.o meme.o
+all: init main.o meme.o
+
+init:
+	mkdir -p build
+
+%.o: 
+	$(CC) $(CFLAGS) $(LDFLAGS) -o build/$@ $*.c
 
 # Implicitly, this rule exists:
 # %.o: 
