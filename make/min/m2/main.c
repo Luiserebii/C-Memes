@@ -2,5 +2,8 @@
 #include "meme.h"
 
 int main() {
-    printf("%s", meme);
+    char buf[100];
+    int n = 1;
+    btoa(buf, isOdd(n));
+    printf("Is %d odd: %s", n, buf);
 }
