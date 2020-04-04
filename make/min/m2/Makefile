@@ -7,7 +7,7 @@ init:
 	mkdir -p build
 
 %.o: 
-	$(CC) $(CFLAGS) $(LDFLAGS) -o build/$@ $*.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c -o build/$@ $*.c
 
 # Implicitly, this rule exists:
 # %.o: 
