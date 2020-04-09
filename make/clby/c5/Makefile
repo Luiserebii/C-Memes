@@ -1,6 +1,10 @@
 #
-# The same as the last (c3), with a few additions/refactors.
+# The same as the last (c4), with a few additions/refactors.
 #
+# Not sure why, but I keep getting:
+# make: *** No rule to make target 'build/main.o', needed by 'hellomake'.  Stop.
+#
+
 
 CC=gcc
 INCLUDE_DIR=./include
