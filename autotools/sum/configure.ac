@@ -2,12 +2,12 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([meme], [1.0.0], [meme@memesrus.io])
+AC_INIT([meme], [1], [owo@owo.io])
 AC_CONFIG_SRCDIR([include/meme.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
-AM_INIT_AUTOMAKE # <----- Added this in
+AM_INIT_AUTOMAKE
 AC_PROG_CC
 
 # Checks for libraries.

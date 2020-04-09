@@ -32,13 +32,13 @@
 #define PACKAGE "meme"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "meme@memesrus.io"
+#define PACKAGE_BUGREPORT "owo@owo.io"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "meme"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "meme 1.0.0"
+#define PACKAGE_STRING "meme 1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "meme"
@@ -47,10 +47,10 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.0.0"
+#define PACKAGE_VERSION "1"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.0.0"
+#define VERSION "1"

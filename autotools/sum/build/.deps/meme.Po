@@ -1,4 +1,4 @@
-meme.o: src/meme.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
+meme.o: .././src/meme.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
@@ -21,7 +21,7 @@ meme.o: src/meme.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h src/../include/meme.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h .././src/../include/meme.h
 
 /usr/include/stdc-predef.h:
 
@@ -81,4 +81,4 @@ meme.o: src/meme.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-src/../include/meme.h:
+.././src/../include/meme.h:

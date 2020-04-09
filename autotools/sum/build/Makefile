@@ -14,7 +14,7 @@
 
 
 
-
+VPATH = ..
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -117,7 +117,7 @@ AM_V_at = $(am__v_at_$(V))
 am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
 am__v_at_0 = @
 am__v_at_1 = 
-DEFAULT_INCLUDES = -I.
+DEFAULT_INCLUDES = -I. -I$(srcdir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
@@ -220,21 +220,21 @@ MAKEINFO = ${SHELL} /home/luiserebii/github/C-Memes/autotools/sum/missing makein
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = meme
-PACKAGE_BUGREPORT = meme@memesrus.io
+PACKAGE_BUGREPORT = owo@owo.io
 PACKAGE_NAME = meme
-PACKAGE_STRING = meme 1.0.0
+PACKAGE_STRING = meme 1
 PACKAGE_TARNAME = meme
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.0.0
+PACKAGE_VERSION = 1
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 1.0.0
-abs_builddir = /home/luiserebii/github/C-Memes/autotools/sum
-abs_srcdir = /home/luiserebii/github/C-Memes/autotools/sum
-abs_top_builddir = /home/luiserebii/github/C-Memes/autotools/sum
-abs_top_srcdir = /home/luiserebii/github/C-Memes/autotools/sum
+VERSION = 1
+abs_builddir = /home/luiserebii/github/C-Memes/autotools/sum/build
+abs_srcdir = /home/luiserebii/github/C-Memes/autotools/sum/build/..
+abs_top_builddir = /home/luiserebii/github/C-Memes/autotools/sum/build
+abs_top_srcdir = /home/luiserebii/github/C-Memes/autotools/sum/build/..
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -268,12 +268,12 @@ psdir = ${docdir}
 runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = .
+srcdir = ..
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_build_prefix = 
 top_builddir = .
-top_srcdir = .
+top_srcdir = ..
 meme_SOURCES = ./src/main.c ./src/meme.c
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
