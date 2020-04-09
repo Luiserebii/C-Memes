@@ -1,0 +1,118 @@
+[CREATE] Makefile.am*
+
+$ autoscan
+
+[GENERATED]:
+autoscan.log
+configure.scan
+
+[CREATE] configure.ac*
+touch NEWS* README* AUTHORS* ChangeLog*
+
+$ autoreconf -iv
+
+[GENERATED]:
+aclocal.m4*
+autom4te.cache
+compile*
+config.h.in*
+configure*
+COPYING*
+depcomp*
+INSTALL*
+install-sh*(hmm)
+Makefile.in*
+missing*
+
+[FINAL STEPS]:
+mkdir build && cd build
+../configure
+make
+make install
+
+
+
+==============
+ERROR:
+
+luiserebii@luiserebii:~/github/C-Memes/autotools/sum/build$ ls
+luiserebii@luiserebii:~/github/C-Memes/autotools/sum/build$ ../configure
+configure: error: cannot find install-sh, install.sh, or shtool in ".." "../.." "../../.."
+
+=============
+If all are deleted, then:
+=============
+ERROR:
+
+config.status: error: cannot find input file: `Makefile.in'
+
+
+=============
+But then:
+=============
+ERROR:
+
+config.status: error: cannot find input file: `config.h.in'
+
+
+Ran this time, but then, on make:
+
+=============
+ERROR: 
+
+CDPATH="${ZSH_VERSION+.}:" && cd .. && aclocal-1.15 
+aclocal-1.15: error: 'configure.ac' is required
+Makefile:314: recipe for target '../aclocal.m4' failed
+make: *** [../aclocal.m4] Error 1
+
+
+Further error after adding configure.ac:
+
+=============
+ERROR:
+
+Makefile.am: error: required file './depcomp' not found
+Makefile.am:   'automake --add-missing' can install 'depcomp'
+Makefile:286: recipe for target '../Makefile.in' failed
+make: *** [../Makefile.in] Error 1
+
+And more, after Makefile.in is kept:
+
+==============
+ERROR:
+
+luiserebii@luiserebii:~/github/C-Memes/autotools/sum/build$ make
+ cd .. && automake-1.15 --gnu
+configure.ac:11: error: required file './compile' not found
+configure.ac:11:   'automake --add-missing' can install 'compile'
+configure.ac:10: error: required file './missing' not found
+configure.ac:10:   'automake --add-missing' can install 'missing'
+Makefile.am: error: required file './INSTALL' not found
+Makefile.am:   'automake --add-missing' can install 'INSTALL'
+Makefile.am: error: required file './NEWS' not found
+Makefile.am: error: required file './README' not found
+Makefile.am: error: required file './AUTHORS' not found
+Makefile.am: error: required file './ChangeLog' not found
+Makefile.am: error: required file './COPYING' not found
+Makefile.am:   'automake --add-missing' can install 'COPYING'
+Makefile.am:2: warning: source file './src/main.c' is in a subdirectory,
+Makefile.am:2: but option 'subdir-objects' is disabled
+automake-1.15: warning: possible forward-incompatibility.
+automake-1.15: At least a source file is in a subdirectory, but the 'subdir-objects'
+automake-1.15: automake option hasn't been enabled.  For now, the corresponding output
+automake-1.15: object file(s) will be placed in the top-level directory.  However,
+automake-1.15: this behaviour will change in future Automake versions: they will
+automake-1.15: unconditionally cause object files to be placed in the same subdirectory
+automake-1.15: of the corresponding sources.
+automake-1.15: You are advised to start using 'subdir-objects' option throughout your
+automake-1.15: project, to avoid future incompatibilities.
+Makefile.am:2: warning: source file './src/meme.c' is in a subdirectory,
+Makefile.am:2: but option 'subdir-objects' is disabled
+Makefile:286: recipe for target '../Makefile.in' failed
+make: *** [../Makefile.in] Error 1
+
+
+Let's try adding: compile missing INSTALL NEWS README AUTHORS ChangeLog COPYING
+
+========
+Looks like it built now! I think we needed all of them... autom4te.cache can be deleted, at least
