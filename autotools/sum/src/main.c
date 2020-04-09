@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "meme.h"
+#include "../include/meme.h"
 
 int main(int argc, char** argv) {
     --argc;

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "meme.h"
+#include "../include/meme.h"
 
 int sum(int argc, char** argv) {
     int sum = 0;
